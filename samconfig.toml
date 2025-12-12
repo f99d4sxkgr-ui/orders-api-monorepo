@@ -1,0 +1,42 @@
+# SAM configuration file for different environments
+
+[default]
+[default.global.parameters]
+stack_name = "orders-api"
+
+[default.build.parameters]
+cached = true
+parallel = true
+
+[default.validate.parameters]
+lint = true
+
+[default.deploy.parameters]
+capabilities = "CAPABILITY_IAM"
+confirm_changeset = true
+resolve_s3 = true
+s3_prefix = "orders-api"
+region = "us-east-1"
+image_repositories = []
+
+# Development environment
+[dev]
+[dev.deploy.parameters]
+stack_name = "orders-api-dev"
+parameter_overrides = "Environment=dev"
+confirm_changeset = false
+
+# Homologation environment  
+[hml]
+[hml.deploy.parameters]
+stack_name = "orders-api-hml"
+parameter_overrides = "Environment=hml"
+confirm_changeset = true
+
+# Production environment
+[prd]
+[prd.deploy.parameters]
+stack_name = "orders-api-prd"
+parameter_overrides = "Environment=prd"
+confirm_changeset = true
+fail_on_empty_changeset = false
