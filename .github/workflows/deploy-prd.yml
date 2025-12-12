@@ -3,6 +3,7 @@ name: Deploy to PRD
 on:
   push:
     tags: ['v*']
+  workflow_dispatch:
 
 jobs:
   deploy:
